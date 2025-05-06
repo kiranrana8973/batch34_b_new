@@ -1,16 +1,20 @@
+import 'package:batch34_b/model/arithmetic_model.dart';
 import 'package:flutter/material.dart';
 
-class FirstView extends StatefulWidget {
-  const FirstView({super.key});
+class ArithmeticView extends StatefulWidget {
+  const ArithmeticView({super.key});
 
   @override
-  State<FirstView> createState() => _FirstViewState();
+  State<ArithmeticView> createState() => _ArithmeticViewState();
 }
 
-class _FirstViewState extends State<FirstView> {
+class _ArithmeticViewState extends State<ArithmeticView> {
   int first = 0;
   int second = 0;
   int result = 0;
+
+  late ArithmeticModel model;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +55,8 @@ class _FirstViewState extends State<FirstView> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  result = first + second;
+                  model = ArithmeticModel(first: first, second: second);
+                  result = model.add();
                 });
               },
               child: Text("Add"),
