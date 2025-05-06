@@ -1,3 +1,4 @@
+import 'package:batch34_b/view/arithmetic_view.dart';
 import 'package:flutter/material.dart';
 
 class DashboardView extends StatelessWidget {
@@ -5,6 +6,6 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const ArithmeticView();
   }
 }

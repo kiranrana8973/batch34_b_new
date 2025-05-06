@@ -9,12 +9,16 @@ class ArithmeticView extends StatefulWidget {
 }
 
 class _ArithmeticViewState extends State<ArithmeticView> {
-  int first = 0;
-  int second = 0;
+  // TextEdiitingCOntroller
+  final firstController = TextEditingController();
+  final secondController = TextEditingController();
+
   int result = 0;
 
   late ArithmeticModel model;
 
+  // Global key
+  final myKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,48 +28,64 @@ class _ArithmeticViewState extends State<ArithmeticView> {
         backgroundColor: Colors.amber,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 8),
-          TextField(
-            onChanged: (value) {
-              first = int.parse(value);
-            },
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Enter first no",
-            ),
-          ),
-          SizedBox(height: 8),
-          TextField(
-            onChanged: (value) {
-              second = int.parse(value);
-            },
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Enter second no",
-            ),
-          ),
-          SizedBox(height: 8),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: myKey,
+          child: Column(
+            children: [
+              TextFormField(
+                // onChanged: (value) {
+                //   first = int.parse(value);
+                // },
+                controller: firstController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Enter first no",
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter first number";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 8),
+              TextFormField(
+                // onChanged: (value) {
+                //   second = int.parse(value);
+                // },
+                controller: secondController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Enter second no",
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter second number";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 8),
 
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  model = ArithmeticModel(first: first, second: second);
-                  result = model.add();
-                });
-              },
-              child: Text("Add"),
-            ),
-          ),
-          SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (myKey.currentState!.validate()) {}
+                  },
+                  child: Text("Add"),
+                ),
+              ),
+              SizedBox(height: 8),
 
-          Text("Result : $result", style: TextStyle(fontSize: 30)),
-        ],
+              Text("Result : $result", style: TextStyle(fontSize: 30)),
+            ],
+          ),
+        ),
       ),
     );
   }
