@@ -12,7 +12,13 @@ class FlexibleExpandedView extends StatelessWidget {
             //flex: 1,
             child: GestureDetector(
               onTap: () {
-                print("COntainer 1 pressed");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Container 1"),
+                    backgroundColor: Colors.green,
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
               },
               child: Container(
                 alignment: Alignment.center,
@@ -26,7 +32,13 @@ class FlexibleExpandedView extends StatelessWidget {
             //flex: 2,
             child: GestureDetector(
               onDoubleTap: () {
-                print("COntainer 2 tapped");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Container 2"),
+                    backgroundColor: Colors.red,
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
               },
               child: Container(
                 alignment: Alignment.center,
