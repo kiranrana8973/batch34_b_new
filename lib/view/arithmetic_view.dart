@@ -75,7 +75,15 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (myKey.currentState!.validate()) {}
+                    if (myKey.currentState!.validate()) {
+                      int first = int.parse(firstController.text);
+                      int second = int.parse(secondController.text);
+                      model = ArithmeticModel(first: first, second: second);
+
+                      setState(() {
+                        result = model.add();
+                      });
+                    }
                   },
                   child: Text("Add"),
                 ),

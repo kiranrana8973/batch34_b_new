@@ -1,5 +1,5 @@
 // Material app
-import 'package:batch34_b/view/dashboard_view.dart';
+import 'package:batch34_b/view/flexible_expanded_view.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -9,7 +9,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardView(),
+      home: FlexibleExpandedView(),
     );
   }
 }
