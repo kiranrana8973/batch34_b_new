@@ -1,5 +1,5 @@
 // Material app
-import 'package:batch34_b/view/flexible_expanded_view.dart';
+import 'package:batch34_b/view/card_view.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -7,9 +7,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: FlexibleExpandedView(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: CardView());
   }
 }
