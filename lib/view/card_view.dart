@@ -11,8 +11,13 @@ class CardView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              for (int i = 0; i < 10; i++)
-                MyCard(title: "Card $i", color: Colors.amber),
+              for (int i = 0; i < 10; i++) ...{
+                if (i % 2 == 0) ...{
+                  MyCard(title: "Card $i", color: Colors.amber),
+                } else ...{
+                  MyCard(title: "Card $i", color: Colors.blue),
+                },
+              },
             ],
           ),
         ),
