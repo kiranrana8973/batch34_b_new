@@ -1,5 +1,4 @@
 import 'package:batch34_b/model/student.dart';
-import 'package:batch34_b/view/output_view.dart';
 import 'package:flutter/material.dart';
 
 class StudentView extends StatefulWidget {
@@ -146,17 +145,6 @@ class _StudentViewState extends State<StudentView> {
                               });
                             },
                           ),
-
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) =>
-                                        OutputView(student: lstStudent[index]),
-                              ),
-                            );
-                          },
                         );
                       },
                     ),
