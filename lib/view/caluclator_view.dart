@@ -31,6 +31,12 @@ class _CalculatorViewState extends State<CalculatorView> {
     "=",
   ];
 
+  String operator = "";
+  int firstNum = 0;
+  int secondNum = 0;
+
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +51,7 @@ class _CalculatorViewState extends State<CalculatorView> {
         child: Column(
           children: [
             TextFormField(
+              controller: _controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -74,6 +81,42 @@ class _CalculatorViewState extends State<CalculatorView> {
                       ),
                       onPressed: () {
                         // Handle button press
+                        if (lstText[i].contains(RegExp(r'[0-9]'))) {
+                          _controller.text += lstText[i];
+                        } else if (lstText[i] == "C") {
+                          _controller.clear();
+                        } else if (lstText[i] == "<-") {
+                          _controller.text = _controller.text.substring(
+                            0,
+                            _controller.text.length - 1,
+                          );
+                        } else if (lstText[i] == "=") {
+                          secondNum = int.parse(_controller.text);
+                          switch (operator) {
+                            case "+":
+                              _controller.text =
+                                  (firstNum + secondNum).toString();
+                              break;
+                            case "-":
+                              _controller.text =
+                                  (firstNum - secondNum).toString();
+                              break;
+                            case "*":
+                              _controller.text =
+                                  (firstNum * secondNum).toString();
+                              break;
+                            case "/":
+                              _controller.text =
+                                  (firstNum ~/ secondNum).toString();
+                              break;
+                            default:
+                              break;
+                          }
+                        } else {
+                          operator = lstText[i];
+                          firstNum = int.parse(_controller.text);
+                          _controller.clear();
+                        }
                       },
                       child: Text(
                         lstText[i],
